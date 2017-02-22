@@ -2,18 +2,18 @@ from osgeo import gdal
 import subprocess
 
 
-def pixel2coord(gt, x, y):
+def pixel2coord(tf, x, y):
     """Returns global coordinates from pixel x, y coordinates"""
-    lat = gt[0] + x*gt[1] + y*gt[2]
-    lon = gt[3] + x*gt[4] + y*gt[5]
+    lat = tf[0] + x*tf[1] + y*tf[2]
+    lon = tf[3] + x*tf[4] + y*tf[5]
 
     return lat, lon
 
 
-def coord2pixel(gt, lat, lon):
+def coord2pixel(tf, lat, lon):
     """Transforms lat/lon coordinates to pixel coordinates"""
-    x = int(round((lon-gt[0])/gt[1]))
-    y = int(round((lat-gt[3])/gt[5]))
+    x = int(round((lon-tf[0])/tf[1]))
+    y = int(round((lat-tf[3])/tf[5]))
 
     return x, y
 
