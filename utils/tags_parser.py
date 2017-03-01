@@ -25,16 +25,10 @@ def tile_parser(filename, log="../data/tiles/log"):
 
                 tileID = int(row[0])
 
-                # HACK: Need to get bryan to change ordering
-                lat1 = float(row[4])
-                lon1 = float(row[1])
-                lat2 = float(row[2])
-                lon2 = float(row[3])
-
-                # lat1 = float(row[1])
-                # lon1 = float(row[2])
-                # lat2 = float(row[3])
-                # lon2 = float(row[4])
+                lat1 = float(row[1])
+                lon1 = float(row[2])
+                lat2 = float(row[3])
+                lon2 = float(row[4])
 
                 files.append(str(row[0]))
 
@@ -43,7 +37,6 @@ def tile_parser(filename, log="../data/tiles/log"):
                 res = gdal_utils.trim(lat1, lon1, lat2, lon2,
                                       '../data/bfree_ortho.tif', outfile)
                 print(row[0])
-                # print(res)
 
 
 def tag_parser(filename, log="../data/tiles/log"):
@@ -97,4 +90,4 @@ if __name__ == "__main__":
     else:
         # tag_parser("../data/tags/tags_jan29_1137.csv")
         # tile_parser("../data/tags/tiles_22feb17_0657.csv")
-        tile_parser("../data/tags/tiles_28feb_330.csv")
+        tile_parser("../data/tags/tiles_28feb17_330.csv")
