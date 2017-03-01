@@ -3,6 +3,7 @@ import sys
 import csv
 import gdal_utils
 
+
 def tile_parser(filename, log="../data/tiles/log"):
     tile_path = '../data/tiles'
 
@@ -88,10 +89,12 @@ def tag_parser(filename, log="../data/tiles/log"):
     if failed > 0:
         print("Failed to parse "+str(failed)+".\n Please see log file "+log)
 
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         tag_parser(sys.argv[1])
         tile_parser(sys.argv[1])
     else:
         # tag_parser("../data/tags/tags_jan29_1137.csv")
-        tile_parser("../data/tags/tiles_22feb17_0657.csv")
+        # tile_parser("../data/tags/tiles_22feb17_0657.csv")
+        tile_parser("../data/tags/tiles_28feb_330.csv")

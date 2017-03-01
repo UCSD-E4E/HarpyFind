@@ -12,10 +12,10 @@ def add_object(doc, xmin, ymin, xmax, ymax):
     obj = etree.SubElement(doc, "object")
 
     name = etree.SubElement(obj, "name")
-    name.text = "Palm Tree"
+    name.text = "palmtree"
 
-    pose = etree.SubElement(obj, "name")
-    pose.text = "Unspecified"
+    pose = etree.SubElement(obj, "pose")
+    pose.text = "Top"
 
     truncated = etree.SubElement(obj, "truncated")
     truncated.text = "0"
@@ -125,8 +125,18 @@ def annotate_tiles(tagfile):
 
             xmin, ymin = gdal_utils.coord2pixel(tf, lat1, lon1)
             xmax, ymax = gdal_utils.coord2pixel(tf, lat2, lon2)
+
+            if xmin <= 0:
+                xmin = 1
+            if xmax > channel.shape[0]:
+                xmax = channel.shape[0] - 1
+            if ymin <= 0:
+                ymin = 1
+            if ymax > channel.shape[1]:
+                ymax = channel.shape[1] - 1
+
             doc.append(add_object(doc, xmin, ymin, xmax, ymax))
 
 # doc = generate_pascal_template("test", "matt", 100, 200)
 # print etree.tostring(doc, pretty_print=True).replace('  ', '\t')
-annotate_tiles('../data/tags/tiles_22feb17_0657.csv')
+annotate_tiles('../data/tags/tiles_28feb17_330.csv')
